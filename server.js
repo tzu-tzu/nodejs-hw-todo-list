@@ -114,7 +114,7 @@ const requestListener = function (req, res) {
 
 
 const server = http.createServer(requestListener);
-server.listen(3005); 
+server.listen(process.env.PORT || 3005); 
 
 // *1.留意 port
 // *2.留意 start script
