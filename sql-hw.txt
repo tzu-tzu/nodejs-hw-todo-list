@@ -1,0 +1,41 @@
+-- 建立國小資料表
+-- 學生編號、姓名、性別、年齡、班級
+CREATE TABLE students (
+    id SERIAL PRIMARY KEY,  -- 學生編號，主鍵
+    name VARCHAR(50),       -- 姓名
+    gender VARCHAR(10),     -- 性別
+    age INTEGER,            -- 年齡
+    class_id VARCHAR(50),  -- 班級編號，外來鍵
+    FOREIGN KEY (class_id) REFERENCES classes(id)  -- 設定外來鍵關聯
+);
+
+-- 建立班級資料表
+-- 班級編號、班級名稱、班級老師
+CREATE TABLE classes (
+    id SERIAL PRIMARY KEY,     -- 班級編號，主鍵
+    name VARCHAR(50),          -- 班級名稱
+    teacher VARCHAR(50)        -- 班級老師
+);
+
+-- 建立家庭歸類資料表
+-- 學生編號、家長編號
+CREATE TABLE family_classification (
+    student_id VARCHAR(50),     -- 學生編號，外來鍵
+    parent_id VARCHAR(50),      -- 家長編號，外來鍵
+    PRIMARY KEY (student_id, parent_id),  -- 組合主鍵
+    FOREIGN KEY (student_id) REFERENCES students(id),  -- 設定外來鍵關聯
+    FOREIGN KEY (parent_id) REFERENCES parents(id)     -- 設定外來鍵關聯
+);
+
+-- 建立家長資料表
+-- 家長編號、家長姓名、家長電話、家長性別
+CREATE TABLE parents (
+    id SERIAL PRIMARY KEY,     -- 家長編號，主鍵
+    name VARCHAR(50),          -- 姓名
+    phone VARCHAR(20),         -- 電話
+    gender VARCHAR(10),        -- 性別
+);
+
+作業一: 班級 適合做外來建
+作業二: 班級老師可以放在班級資料表裡面
+作業三: 家庭歸類資料表，可以建立家長資料表，避免重複改家長資料
